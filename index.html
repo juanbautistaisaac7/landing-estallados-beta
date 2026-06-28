@@ -23,8 +23,8 @@
   <meta name="twitter:image" content="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_1200,h_630,c_fill/v1782676515/carritoPochoclos_k4e5hi.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_32/v1782675876/logo_boctkq.png">
-  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_180/v1782675876/logo_boctkq.png">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_32/v1782680532/logo2_l83rqm.png">
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_180/v1782680532/logo2_l83rqm.png">
   <meta name="theme-color" content="#E30613">
 
   <!-- Fonts -->
@@ -210,155 +210,101 @@
       font-size: 12px; font-weight: 500; color: rgba(255,255,255,.88);
     }
 
-    /* ─── HERO VISUAL: PREMIUM COLLAGE ─── */
+    /* ─── HERO VISUAL: simplified premium photo + stamp ─── */
+    .hero__logo {
+      display: inline-block;
+      margin-bottom: 18px;
+      animation: fadeUp .6s ease-out both;
+    }
+    .hero__logo img {
+      max-width: 180px; width: 100%; height: auto;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,.28));
+    }
+
     .hero__visual {
       position: relative;
-      width: clamp(320px, 44vw, 540px);
-      height: clamp(380px, 46vw, 560px);
+      width: 100%;
+      max-width: 520px;
       margin: 0 auto;
-      animation: fadeUp .8s .1s ease-out both;
+      animation: fadeUp .8s .15s ease-out both;
     }
-
-    /* Decorative orbital rings behind the collage */
-    .hero__ring {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%; pointer-events: none;
-      z-index: 0;
+    .hero__image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 32px;
+      overflow: hidden;
+      background: radial-gradient(circle at 30% 30%, rgba(255,214,0,.25) 0%, rgba(255,107,53,.15) 40%, transparent 75%);
+      box-shadow: 0 24px 60px rgba(0,0,0,.35), inset 0 2px 4px rgba(255,255,255,.15);
     }
-    .hero__ring--1 {
-      width: 78%; height: 78%;
-      border: 1.5px dashed rgba(255,255,255,.22);
-      animation: ringSpin 30s linear infinite;
+    .hero__image-wrap::before {
+      content: ''; position: absolute; inset: 0;
+      border-radius: 32px;
+      border: 2px solid rgba(255,255,255,.18);
+      pointer-events: none; z-index: 2;
     }
-    .hero__ring--2 {
+    .hero__image-wrap img {
       width: 100%; height: 100%;
-      border: 1.5px dotted rgba(255,214,0,.28);
-      animation: ringSpin 45s linear infinite reverse;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s var(--ease-out);
     }
+    .hero__image-wrap:hover img { transform: scale(1.04); }
 
-    /* Sparkles scattered around */
-    .hero__sparkle {
+    /* Quality stamp on top of the image */
+    .hero__stamp {
       position: absolute;
-      font-size: 22px; line-height: 1;
-      filter: drop-shadow(0 2px 8px rgba(255,214,0,.6));
-      animation: sparkleTwinkle 3s ease-in-out infinite;
-      pointer-events: none; z-index: 4;
-    }
-    .hero__sparkle--1 { top: 4%;   left: 48%; animation-delay: 0s; }
-    .hero__sparkle--2 { top: 32%;  right: 2%; animation-delay: .7s; font-size: 16px; }
-    .hero__sparkle--3 { bottom: 14%; left: 4%; animation-delay: 1.4s; }
-    .hero__sparkle--4 { bottom: 40%; right: 8%; animation-delay: 2.1s; font-size: 14px; }
-    .hero__sparkle--5 { top: 16%; left: 6%; animation-delay: 1s; font-size: 16px; }
-
-    /* MAIN FEATURED: carrito de pochoclos */
-    .hero__featured {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: clamp(210px, 26vw, 310px);
-      height: clamp(210px, 26vw, 310px);
-      z-index: 3;
-      animation: featuredFloat 5s ease-in-out infinite;
-      transition: transform .4s var(--ease-out);
-    }
-    .hero__featured-glow {
-      position: absolute; inset: -18%;
+      top: -10px; right: -10px;
+      width: clamp(120px, 16vw, 160px);
+      height: clamp(120px, 16vw, 160px);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,214,0,.55) 0%, rgba(255,107,53,.25) 38%, transparent 68%);
-      animation: glowPulse 3.5s ease-in-out infinite;
-      z-index: -1; filter: blur(8px); pointer-events: none;
-    }
-    .hero__featured img {
-      position: relative; z-index: 1;
-      width: 100%; height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 22px 44px rgba(0,0,0,.5))
-              drop-shadow(0 4px 12px rgba(0,0,0,.35));
-    }
-    .hero__featured-pill {
-      position: absolute;
-      top: -6%; left: 50%; transform: translateX(-50%) rotate(-3deg);
       background: var(--yellow);
       color: var(--dark);
-      padding: 8px 18px;
-      border-radius: 100px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
       font-family: 'Righteous', cursive;
-      font-size: 13px; letter-spacing: .3px;
-      box-shadow: 0 8px 22px rgba(0,0,0,.3), inset 0 2px 4px rgba(255,255,255,.5);
-      white-space: nowrap; z-index: 4;
-      animation: pillWobble 4s ease-in-out infinite;
+      line-height: 1.15;
+      padding: 14px;
+      transform: rotate(-8deg);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35), inset 0 -3px 8px rgba(0,0,0,.1);
+      border: 3px dashed rgba(26,5,16,.18);
+      z-index: 3;
+      animation: stampWobble 5s ease-in-out infinite;
     }
-
-    /* Floating mini cards around the featured */
-    .hero__floats { position: absolute; inset: 0; z-index: 2; }
-    .hero__float {
-      position: absolute;
-      display: flex; flex-direction: column; align-items: center;
-      padding: 12px 10px 0;
-      border-radius: 20px;
-      background: rgba(255,255,255,.14);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(255,255,255,.28);
-      box-shadow: 0 14px 32px rgba(0,0,0,.28), inset 0 1px 2px rgba(255,255,255,.3);
-      transition: transform .4s var(--ease-out), box-shadow .35s, border-color .35s;
-      cursor: default; will-change: transform;
-    }
-    .hero__float:hover {
-      transform: translateY(-8px) scale(1.06) !important;
-      box-shadow: 0 22px 44px rgba(0,0,0,.4);
-      border-color: rgba(255,255,255,.55);
-      z-index: 5;
-    }
-    .hero__float-img {
-      width: 100%; aspect-ratio: 1/1;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 6px;
-    }
-    .hero__float-img img {
-      width: 88%; height: 88%; object-fit: contain;
-      filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
-      transition: transform .35s var(--ease-out);
-    }
-    .hero__float:hover .hero__float-img img { transform: scale(1.08) rotate(-4deg); }
-    .hero__float-tag {
-      background: #fff; color: var(--dark);
+    .hero__stamp-pre {
+      font-size: clamp(8px, 1vw, 10px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
       font-family: 'Poppins', sans-serif;
-      font-size: 11px; font-weight: 700;
-      padding: 5px 11px; border-radius: 100px;
-      margin-bottom: -12px;
-      white-space: nowrap;
-      box-shadow: 0 5px 12px rgba(0,0,0,.25);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .hero__stamp-main {
+      font-size: clamp(13px, 1.5vw, 16px);
+      line-height: 1.1;
+    }
+    .hero__stamp-city {
+      font-size: clamp(11px, 1.3vw, 14px);
+      color: var(--red);
+      margin-top: 2px;
     }
 
-    /* Color tint per floating card */
-    .hero__float--castillo {
-      top: 2%; left: 0%;
-      width: clamp(96px, 11vw, 124px);
-      border-color: rgba(96,165,250,.5);
-      background: linear-gradient(135deg, rgba(59,130,246,.32), rgba(255,255,255,.1));
-      animation: cardFloat 4.5s 0s ease-in-out infinite;
+    /* Lighter caption below the photo */
+    .hero__caption {
+      margin-top: 18px;
+      text-align: center;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 400;
+      letter-spacing: .3px;
+      font-style: italic;
     }
-    .hero__float--sapo {
-      top: 6%; right: -2%;
-      width: clamp(96px, 11vw, 124px);
-      border-color: rgba(74,222,128,.5);
-      background: linear-gradient(135deg, rgba(34,197,94,.32), rgba(255,255,255,.1));
-      animation: cardFloat 4.5s 1.1s ease-in-out infinite;
-    }
-    .hero__float--dardo {
-      bottom: 8%; left: -2%;
-      width: clamp(96px, 11vw, 124px);
-      border-color: rgba(251,191,36,.5);
-      background: linear-gradient(135deg, rgba(245,158,11,.32), rgba(255,255,255,.1));
-      animation: cardFloat 4.5s 2.2s ease-in-out infinite;
-    }
-    .hero__float--arco {
-      bottom: 2%; right: 0%;
-      width: clamp(96px, 11vw, 124px);
-      border-color: rgba(167,139,250,.5);
-      background: linear-gradient(135deg, rgba(139,92,246,.32), rgba(255,255,255,.1));
-      animation: cardFloat 4.5s 3.3s ease-in-out infinite;
+    .hero__caption em {
+      color: var(--yellow);
+      font-style: normal;
+      font-weight: 600;
     }
 
     /* Hero wave */
@@ -435,27 +381,19 @@
     }
     .pochoclos__img-wrap {
       position: relative; border-radius: var(--r-lg);
-      background: linear-gradient(135deg,#FFF0F0 0%,#FFE0E0 100%);
-      padding: 32px; display: flex; align-items: center; justify-content: center;
       box-shadow: var(--sh-clay);
       min-height: 380px;
-      border: 3px solid rgba(227,6,19,.1);
+      aspect-ratio: 4 / 5;
       overflow: hidden;
-    }
-    .pochoclos__img-wrap::before {
-      content: ''; position: absolute;
-      top: -60px; right: -60px; width: 240px; height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle,rgba(227,6,19,.1) 0%,transparent 70%);
-      pointer-events: none;
+      border: 3px solid rgba(227,6,19,.1);
     }
     .pochoclos__img-wrap img {
-      max-height: 320px; width: auto; object-fit: contain;
-      position: relative; z-index: 1;
-      filter: drop-shadow(0 12px 24px rgba(0,0,0,.15));
-      transition: transform .4s var(--ease-out);
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s var(--ease-out);
     }
-    .pochoclos__img-wrap:hover img { transform: scale(1.04) translateY(-4px); }
+    .pochoclos__img-wrap:hover img { transform: scale(1.06); }
     .pochoclos__badge {
       position: absolute; top: 20px; right: 20px; z-index: 2;
       background: var(--red); color: #fff;
@@ -641,6 +579,90 @@
       background: var(--yellow); color: var(--dark);
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 800;
+    }
+
+    /* ─── DELIVERY / POCHOCLOS A DOMICILIO ─── */
+    .delivery {
+      padding: 100px 0;
+      background: linear-gradient(140deg, #FFF9F0 0%, #FFE9CC 100%);
+      position: relative; overflow: hidden;
+    }
+    .delivery::before {
+      content: ''; position: absolute;
+      top: -100px; right: -100px;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .delivery::after {
+      content: ''; position: absolute;
+      bottom: -80px; left: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,214,0,.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .delivery__inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .delivery__img-wrap {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 18px 44px rgba(0,0,0,.18), inset 0 2px 4px rgba(255,255,255,.5);
+      border: 3px solid rgba(255,107,53,.18);
+    }
+    .delivery__img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .5s var(--ease-out);
+    }
+    .delivery__img-wrap:hover img { transform: scale(1.06); }
+    .delivery__badge {
+      position: absolute;
+      top: 20px; left: 20px; z-index: 2;
+      background: var(--orange); color: #fff;
+      border-radius: 100px; padding: 7px 16px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .5px;
+      box-shadow: 0 6px 16px rgba(255,107,53,.4);
+    }
+    .delivery__content { padding: 8px 0; }
+    .delivery__content .sec-label { color: var(--orange); }
+    .delivery__content .sec-title em { color: var(--orange); font-style: normal; }
+    .delivery__features {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 14px; margin: 26px 0 32px;
+    }
+    .delivery__features li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 15px; color: var(--dark);
+    }
+    .delivery__features li .delivery__feat-icon {
+      flex-shrink: 0;
+      width: 38px; height: 38px; border-radius: 12px;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+    .delivery__features li strong { display: block; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+    .delivery__features li span.delivery__feat-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .delivery__note {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 14px;
+      font-size: 13px; color: var(--muted);
+    }
+    .delivery__note::before {
+      content: 'ℹ️'; font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .delivery { padding: 72px 0; }
+      .delivery__inner { grid-template-columns: 1fr; gap: 36px; }
+      .delivery__img-wrap { aspect-ratio: 4 / 3; max-width: 480px; margin: 0 auto; }
     }
 
     /* ─── BENEFITS ─── */
@@ -874,16 +896,26 @@
 
     @media (max-width: 768px) {
       .testimonials { padding: 72px 0; }
-      .testi-stage { height: 480px; }
-      .testi-card.is-left  { transform: translate(calc(-50% - 180px), -50%) scale(.7) rotateY(18deg); }
-      .testi-card.is-right { transform: translate(calc(-50% + 180px), -50%) scale(.7) rotateY(-18deg); }
+      .testimonials__header { margin-bottom: 36px; }
+      .testi-stage { height: 440px; }
+      /* Hide side cards on tablet — only center card shown for clarity */
+      .testi-card.is-left,
+      .testi-card.is-right {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(.85);
+      }
       .testi-arrow { display: none; }
+      .testi-card { width: min(380px, 92vw); padding: 32px 26px 28px; }
+      .testi-dots { margin-top: 24px; }
     }
     @media (max-width: 480px) {
-      .testi-card { padding: 28px 22px 24px; }
-      .testi-card.is-left  { transform: translate(calc(-50% - 140px), -50%) scale(.6) rotateY(18deg); opacity: .35; }
-      .testi-card.is-right { transform: translate(calc(-50% + 140px), -50%) scale(.6) rotateY(-18deg); opacity: .35; }
-      .testi-quote { font-size: 14px; }
+      .testi-stage { height: 460px; }
+      .testi-card { padding: 28px 22px 24px; width: min(340px, 94vw); }
+      .testi-quote { font-size: 14px; line-height: 1.65; }
+      .testi-avatar { width: 72px; height: 72px; border-width: 3px; margin-bottom: 14px; }
+      .testi-name { font-size: 16px; }
+      .testi-role { font-size: 11px; }
     }
 
     /* ─── FOOTER ─── */
@@ -963,12 +995,7 @@
     @keyframes blobFloat{ 0%,100%{transform:translate(0,0)rotate(0)} 50%{transform:translate(22px,-26px)rotate(7deg)} }
     @keyframes sphereFloat { 0%,100%{transform:translate(-50%,-50%) translateY(0)} 50%{transform:translate(-50%,-50%) translateY(-14px)} }
     @keyframes pillFloat{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-    @keyframes featuredFloat { 0%,100%{transform:translate(-50%,-50%) translateY(0)} 50%{transform:translate(-50%,-50%) translateY(-10px)} }
-    @keyframes glowPulse { 0%,100%{opacity:.85;transform:scale(1)} 50%{opacity:1;transform:scale(1.08)} }
-    @keyframes cardFloat { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-12px) rotate(-2deg)} }
-    @keyframes ringSpin { from{transform:translate(-50%,-50%) rotate(0)} to{transform:translate(-50%,-50%) rotate(360deg)} }
-    @keyframes sparkleTwinkle { 0%,100%{opacity:.5;transform:scale(.9)} 50%{opacity:1;transform:scale(1.2)} }
-    @keyframes pillWobble { 0%,100%{transform:translateX(-50%) rotate(-3deg)} 50%{transform:translateX(-50%) rotate(3deg)} }
+    @keyframes stampWobble { 0%,100%{transform:rotate(-8deg) scale(1)} 50%{transform:rotate(-4deg) scale(1.04)} }
     @keyframes cFall    { 0%{transform:translateY(-20px)rotate(0);opacity:.55} 100%{transform:translateY(110vh)rotate(360deg);opacity:0} }
     @keyframes tickerAnim { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @keyframes pulse    { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.75)} }
@@ -1049,69 +1076,33 @@
       }
     }
 
-    /* ─── ≤900px — HERO collage shrinks, prep for stack ─── */
+    /* ─── ≤900px — HERO photo shrinks ─── */
     @media (max-width:900px) {
-      .hero__visual    { width: clamp(300px, 50vw, 440px); height: clamp(360px, 52vw, 480px); }
-      .hero__featured  { width: clamp(180px, 24vw, 240px); height: clamp(180px, 24vw, 240px); }
-      .hero__float     { width: 96px !important; }
+      .hero__visual    { max-width: 440px; }
+      .hero__stamp     { width: clamp(110px, 18vw, 140px); height: clamp(110px, 18vw, 140px); }
     }
 
-    /* ─── ≤768px — MOBILE: hero stacks, collage compact ─── */
+    /* ─── ≤768px — MOBILE: hero stacks (text first, image after) ─── */
     @media (max-width:768px) {
       /* Hero stack */
       .hero            { padding: 92px 0 60px; min-height: auto; }
-      .hero__grid      { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+      .hero__grid      { grid-template-columns: 1fr; gap: 32px; text-align: center; }
       .hero__sub       { margin: 0 auto 28px; }
       .hero__btns      { justify-content: center; }
       .hero__chips     { justify-content: center; }
+      .hero__logo img  { max-width: 150px; }
 
-      /* Hero collage: compact composition on mobile */
+      /* IMPORTANT: text first, then image (no order override) */
       .hero__visual    {
-        order: -1;
-        position: relative;
-        width: 100%; max-width: 420px;
-        height: auto;
+        max-width: 380px;
         margin: 0 auto;
-        padding: 18px 12px 28px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
       }
-      .hero__ring--1, .hero__ring--2 { display: none; }
-      .hero__sparkle--1 { top: 0; left: 50%; transform: translateX(-50%); }
-      .hero__sparkle--2 { top: 30%; right: 6%; }
-      .hero__sparkle--3 { bottom: 50%; left: 4%; }
-      .hero__sparkle--4 { bottom: 8%; right: 8%; }
-      .hero__sparkle--5 { top: 10%; left: 8%; }
-
-      .hero__featured {
-        position: relative; top: auto; left: auto; transform: none;
-        width: clamp(180px, 52vw, 240px);
-        height: clamp(180px, 52vw, 240px);
-        margin: 0 auto;
-        animation: featuredFloatMobile 5s ease-in-out infinite;
+      .hero__stamp     {
+        width: 120px; height: 120px;
+        top: -8px; right: -8px;
+        padding: 10px;
       }
-      .hero__featured-pill { top: -10px; }
-
-      .hero__floats {
-        position: relative; inset: auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        width: 100%; max-width: 380px;
-      }
-      .hero__float {
-        position: relative !important;
-        top: auto !important; left: auto !important;
-        right: auto !important; bottom: auto !important;
-        width: 100% !important;
-        padding: 8px 6px 0;
-        animation: none !important;
-      }
-      .hero__float-img { margin-bottom: 4px; }
-      .hero__float-img img { width: 80%; height: 80%; }
-      .hero__float-tag { font-size: 10px; padding: 4px 8px; margin-bottom: -10px; }
+      .hero__caption   { margin-top: 14px; }
 
       /* Services */
       .pochoclos__inner { grid-template-columns: 1fr; }
@@ -1135,10 +1126,6 @@
       /* WA tooltip: hide on mobile */
       .wa-tooltip       { display: none; }
     }
-    @keyframes featuredFloatMobile {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
 
     /* ─── ≤480px — SMALL PHONES ─── */
     @media (max-width:480px) {
@@ -1147,7 +1134,8 @@
       .games,
       .combo,.benefits,
       .info,.how,.cta,
-      .testimonials      { padding: 72px 0; }
+      .testimonials,
+      .delivery          { padding: 72px 0; }
 
       .hero__btns        { flex-direction: column; }
       .hero__btns .btn   { width: 100%; justify-content: center; }
@@ -1155,12 +1143,12 @@
       .cta__btns .btn    { width: 100%; justify-content: center; }
       .info__grid        { grid-template-columns: 1fr; }
 
-      /* Hero collage: tighter */
-      .hero__visual      { gap: 16px; padding: 14px 8px 22px; }
-      .hero__featured    { width: clamp(150px, 46vw, 200px); height: clamp(150px, 46vw, 200px); }
-      .hero__floats      { gap: 6px; max-width: 100%; }
-      .hero__float       { padding: 7px 5px 0; }
-      .hero__float-tag   { font-size: 9.5px; padding: 3px 7px; }
+      /* Hero tighter */
+      .hero__visual      { max-width: 320px; }
+      .hero__stamp       { width: 100px; height: 100px; padding: 8px; }
+      .hero__stamp-pre   { font-size: 8px; letter-spacing: 1.5px; }
+      .hero__stamp-main  { font-size: 12px; }
+      .hero__stamp-city  { font-size: 10px; }
 
       /* Combo grid: 2x2 instead of cramped */
       .combo__imgs       { grid-template-columns: 1fr 1fr; max-width: 280px; }
@@ -1170,16 +1158,14 @@
     @media (max-width:360px) {
       .nav__logo-name    { font-size: 17px; }
       .hero__h1          { font-size: 32px; }
-      .hero__floats      { grid-template-columns: repeat(4, 1fr); gap: 5px; }
-      .hero__float       { padding: 6px 4px 0; }
-      .hero__float-tag   { font-size: 9px; padding: 3px 6px; margin-bottom: -8px; }
+      .hero__visual      { max-width: 280px; }
+      .hero__stamp       { width: 88px; height: 88px; padding: 6px; }
     }
 
     /* ─── PERFORMANCE: reduce blur on smaller screens ─── */
     @media (max-width:768px) {
       .hero__badge       { backdrop-filter: none; background: rgba(255,255,255,.18); }
       .wa-float          { backdrop-filter: none; }
-      .hero__float       { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
     }
   </style>
 </head>
@@ -1202,7 +1188,7 @@
     <div class="nav__inner">
       <a href="#" class="nav__logo" aria-label="Estallados — Inicio">
         <div class="nav__logo-img">
-          <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_80/v1782675876/logo_boctkq.png"
+          <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_80/v1782680532/logo2_l83rqm.png"
                alt="Logo Estallados" width="40" height="40" fetchpriority="high">
         </div>
         <span class="nav__logo-name">Estallados</span>
@@ -1211,6 +1197,7 @@
       <ul class="nav__links" id="navLinks" role="list">
         <li><a href="#pochoclos">Pochoclos</a></li>
         <li><a href="#servicios">Inflables</a></li>
+        <li><a href="#delivery">A domicilio</a></li>
         <li><a href="#como-funciona">Cómo Funciona</a></li>
         <li><a href="#contacto" class="nav__cta">¡Consultá Ahora!</a></li>
       </ul>
@@ -1234,6 +1221,10 @@
 
       <!-- Content -->
       <div class="hero__content">
+        <a href="#" class="hero__logo" aria-label="Estallados">
+          <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_360/v1782681002/LogoParaHero_ehfdmx.png"
+               alt="Estallados" width="180" fetchpriority="high">
+        </a>
         <div class="hero__badge">
           <span class="hero__badge-dot" aria-hidden="true"></span>
           Disponible para tu evento
@@ -1263,54 +1254,19 @@
         </div>
       </div>
 
-      <!-- Visual: premium collage with real product photos -->
-      <div class="hero__visual" aria-hidden="true">
-        <div class="hero__ring hero__ring--1"></div>
-        <div class="hero__ring hero__ring--2"></div>
-
-        <span class="hero__sparkle hero__sparkle--1">✨</span>
-        <span class="hero__sparkle hero__sparkle--2">⭐</span>
-        <span class="hero__sparkle hero__sparkle--3">💫</span>
-        <span class="hero__sparkle hero__sparkle--4">✨</span>
-        <span class="hero__sparkle hero__sparkle--5">⭐</span>
-
-        <div class="hero__featured">
-          <div class="hero__featured-glow"></div>
-          <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_600/v1782676515/carritoPochoclos_k4e5hi.png"
-               alt="" loading="eager" fetchpriority="high">
-          <span class="hero__featured-pill">⭐ Pochoclos Estrella</span>
-        </div>
-
-        <div class="hero__floats">
-          <div class="hero__float hero__float--castillo" data-depth="1.2">
-            <div class="hero__float-img">
-              <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_220/v1782676429/castillo_uqebph.png"
-                   alt="" loading="eager">
-            </div>
-            <span class="hero__float-tag">🏰 Castillo</span>
-          </div>
-          <div class="hero__float hero__float--sapo" data-depth="0.9">
-            <div class="hero__float-img">
-              <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_220/v1782676262/sapo_fqssjp.png"
-                   alt="" loading="eager">
-            </div>
-            <span class="hero__float-tag">🐸 Sapo</span>
-          </div>
-          <div class="hero__float hero__float--dardo" data-depth="1.0">
-            <div class="hero__float-img">
-              <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_220/v1782676074/dardo_addonm.png"
-                   alt="" loading="eager">
-            </div>
-            <span class="hero__float-tag">🎯 Dardo</span>
-          </div>
-          <div class="hero__float hero__float--arco" data-depth="1.1">
-            <div class="hero__float-img">
-              <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_220/v1782675876/arco_lsh8ap.png"
-                   alt="" loading="eager">
-            </div>
-            <span class="hero__float-tag">⚽ Penales</span>
+      <!-- Visual: simple premium photo + stamp -->
+      <div class="hero__visual">
+        <div class="hero__image-wrap">
+          <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_900/v1782683476/pochocloHero_d5jzse.png"
+               alt="Pochoclos fresquitos Estallados Rosario"
+               loading="eager" fetchpriority="high">
+          <div class="hero__stamp" aria-hidden="true">
+            <span class="hero__stamp-pre">Los mejores</span>
+            <span class="hero__stamp-main">Pochoclos</span>
+            <span class="hero__stamp-city">de Rosario</span>
           </div>
         </div>
+        <p class="hero__caption">…y los <em>inflables</em> para tu evento</p>
       </div>
 
     </div>
@@ -1519,6 +1475,60 @@
              class="btn btn--white" target="_blank" rel="noopener noreferrer">
             Armar mi combo por WhatsApp 🎉
           </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DELIVERY: POCHOCLOS A DOMICILIO ── -->
+  <section class="delivery" id="delivery" aria-labelledby="delivery-h">
+    <div class="container">
+      <div class="delivery__inner">
+
+        <div class="delivery__img-wrap reveal">
+          <span class="delivery__badge">🛵 Nuevo servicio</span>
+          <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_900/v1782682850/popcorns_svfvrl.png"
+               alt="Pochoclos a domicilio Estallados"
+               loading="lazy" decoding="async">
+        </div>
+
+        <div class="delivery__content reveal d2">
+          <span class="sec-label">También a tu casa</span>
+          <h2 class="sec-title" id="delivery-h">Pedí <em>pochoclos</em><br>a tu casa</h2>
+          <p class="sec-sub" style="margin-bottom: 8px;">
+            ¿Maratón de pelis, juntada con amigos o antojo de finde? Te llevamos pochoclos recién hechos directo a la puerta.
+          </p>
+          <ul class="delivery__features">
+            <li>
+              <div class="delivery__feat-icon">🍿</div>
+              <div>
+                <strong>Fresquitos y al momento</strong>
+                <span class="delivery__feat-text">Preparados el mismo día, calentitos cuando los recibís.</span>
+              </div>
+            </li>
+            <li>
+              <div class="delivery__feat-icon">📅</div>
+              <div>
+                <strong>Fines de semana</strong>
+                <span class="delivery__feat-text">Delivery a pedido los viernes, sábados y domingos.</span>
+              </div>
+            </li>
+            <li>
+              <div class="delivery__feat-icon">📍</div>
+              <div>
+                <strong>Zona Rosario</strong>
+                <span class="delivery__feat-text">Consultanos por tu zona y armamos la entrega.</span>
+              </div>
+            </li>
+          </ul>
+          <a href="https://wa.me/5493482618539?text=Hola%20Estallados!%20%F0%9F%8D%BF%20Quer%C3%ADa%20pedir%20pochoclos%20a%20domicilio.%20%C2%BFMe%20pasan%20info%20de%20zonas%20y%20precios%3F"
+             class="btn btn--red" target="_blank" rel="noopener noreferrer"
+             style="background: var(--orange); box-shadow: 0 6px 20px rgba(255,107,53,.35);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir por WhatsApp
+          </a>
+          <p class="delivery__note">Disponibilidad sujeta a zona y agenda. Consultanos sin compromiso.</p>
         </div>
 
       </div>
