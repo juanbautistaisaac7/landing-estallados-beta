@@ -213,12 +213,12 @@
     /* ─── HERO VISUAL: simplified premium photo + stamp ─── */
     .hero__logo {
       display: inline-block;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
       animation: fadeUp .6s ease-out both;
     }
     .hero__logo img {
-      max-width: 180px; width: 100%; height: auto;
-      filter: drop-shadow(0 6px 14px rgba(0,0,0,.28));
+      max-width: 230px; width: 100%; height: auto;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.32));
     }
 
     .hero__visual {
@@ -437,16 +437,28 @@
       border-color: var(--gc, var(--red));
     }
     .game-card__img {
-      height: 260px; overflow: hidden; position: relative;
+      height: 280px; overflow: hidden; position: relative;
       background: var(--gi-bg, #F5F5F5);
-      padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 18px;
+    }
+    .game-card__img::after {
+      content: ''; position: absolute;
+      bottom: -40%; right: -20%;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.5) 0%, transparent 65%);
+      pointer-events: none;
     }
     .game-card__img img {
-      width: 100%; height: 100%; object-fit: cover;
+      position: relative; z-index: 1;
+      max-width: 100%; max-height: 100%;
+      width: auto; height: auto;
+      object-fit: contain;
       display: block;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.18));
       transition: transform .4s var(--ease-out);
     }
-    .game-card:hover .game-card__img img { transform: scale(1.07); }
+    .game-card:hover .game-card__img img { transform: scale(1.07) translateY(-3px); }
     .game-card__body { padding: 22px 24px; }
     .game-card__tag {
       display: inline-block; margin-bottom: 10px;
@@ -521,64 +533,74 @@
       display: grid; grid-template-columns: 1fr 1.1fr;
       gap: 64px; align-items: center;
     }
-    .combo__imgs {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-      width: 100%; max-width: 420px;
-    }
-    .combo__img {
-      position: relative;
-      border-radius: var(--r-md);
-      border: 1.5px solid rgba(255,255,255,.12);
-      overflow: hidden;
-      aspect-ratio: 1 / 1;
-      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      transition: transform .35s var(--ease-spring), border-color .22s, box-shadow .22s;
-    }
-    .combo__img:nth-child(1) { background: linear-gradient(135deg, rgba(227,6,19,.18), rgba(227,6,19,.05)); }
-    .combo__img:nth-child(2) { background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(59,130,246,.05)); }
-    .combo__img:nth-child(3) { background: linear-gradient(135deg, rgba(34,197,94,.18), rgba(34,197,94,.05)); }
-    .combo__img:nth-child(4) { background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(139,92,246,.05)); }
-    .combo__img:hover {
-      transform: translateY(-4px) scale(1.03);
-      border-color: var(--yellow);
-      box-shadow: 0 12px 32px rgba(0,0,0,.4);
-    }
-    .combo__img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .combo__img-label {
-      position: absolute; bottom: 8px; left: 8px; right: 8px;
+    .combo__inner--solo {
+      grid-template-columns: 1fr;
+      max-width: 760px;
+      margin: 0 auto;
       text-align: center;
-      font-family: 'Righteous',cursive; font-size: 12px;
-      color: #fff; letter-spacing: .5px;
-      text-shadow: 0 2px 8px rgba(0,0,0,.7);
-      pointer-events: none;
+    }
+    .combo__inner--solo .combo__content {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .combo__inner--solo .combo__sub { margin-left: auto; margin-right: auto; }
+    .combo__inner--solo .combo__perks {
+      max-width: 520px; margin-left: auto; margin-right: auto; text-align: left;
     }
     .combo .sec-label { color: var(--yellow); }
     .combo__title {
-      font-family: 'Righteous',cursive; font-size: clamp(26px,3vw,42px);
-      color: #fff; margin-bottom: 14px; line-height: 1.15;
+      font-family: 'Righteous',cursive; font-size: clamp(30px, 4vw, 52px);
+      color: #fff; margin-bottom: 18px; line-height: 1.12;
     }
     .combo__title em { color: var(--yellow); font-style: normal; }
     .combo__sub {
-      font-size: 16px; color: rgba(255,255,255,.68); line-height: 1.75;
-      max-width: 480px; margin-bottom: 24px;
+      font-size: 17px; color: rgba(255,255,255,.78); line-height: 1.7;
+      max-width: 560px; margin-bottom: 32px;
     }
     .combo__perks {
       list-style: none; display: flex; flex-direction: column;
-      gap: 10px; margin-bottom: 32px;
+      gap: 12px; margin-bottom: 32px;
+      width: 100%;
     }
     .combo__perks li {
       display: flex; align-items: center; gap: 12px;
       font-size: 15px; color: rgba(255,255,255,.85);
     }
-    .combo__perks li span {
+    .combo__perk-icon {
       flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
       background: var(--yellow); color: var(--dark);
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 800;
+    }
+    /* Highlighted perk (price special) */
+    .combo__perk--highlight {
+      align-items: flex-start !important;
+      gap: 16px !important;
+      padding: 18px 22px;
+      border-radius: var(--r-md);
+      background: linear-gradient(135deg, rgba(255,214,0,.18), rgba(255,214,0,.06));
+      border: 1.5px solid rgba(255,214,0,.45);
+      box-shadow: 0 8px 24px rgba(255,214,0,.12), inset 0 1px 2px rgba(255,255,255,.1);
+      margin-bottom: 4px;
+    }
+    .combo__perk--highlight .combo__perk-icon {
+      width: 44px !important; height: 44px !important;
+      font-size: 22px;
+      background: var(--yellow);
+      box-shadow: 0 6px 16px rgba(255,214,0,.35);
+    }
+    .combo__perk--highlight strong {
+      display: block;
+      font-family: 'Righteous', cursive;
+      font-size: 17px; color: #fff;
+      letter-spacing: .2px;
+      margin-bottom: 4px;
+    }
+    .combo__perk--highlight em {
+      display: block;
+      font-style: normal;
+      font-size: 13px;
+      color: var(--yellow);
+      font-weight: 500;
     }
 
     /* ─── DELIVERY / POCHOCLOS A DOMICILIO ─── */
@@ -664,6 +686,41 @@
       .delivery__inner { grid-template-columns: 1fr; gap: 36px; }
       .delivery__img-wrap { aspect-ratio: 4 / 3; max-width: 480px; margin: 0 auto; }
     }
+
+    /* ─── EXPLAIN (BENEFITS + FAQ unified) ─── */
+    .explain {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #FFF9F0 0%, #FFFFFF 100%);
+      position: relative;
+    }
+    .explain__header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 56px;
+    }
+    .explain__header .sec-sub { margin: 0 auto; }
+    .explain__sub {
+      margin: 64px auto 28px;
+      max-width: 760px;
+      text-align: center;
+      position: relative;
+    }
+    .explain__sub::before {
+      content: ''; display: block;
+      width: 56px; height: 3px;
+      background: var(--red); border-radius: 100px;
+      margin: 0 auto 18px;
+    }
+    .explain__sub-title {
+      font-family: 'Righteous', cursive;
+      font-size: clamp(22px, 2.4vw, 30px);
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .explain__sub-text {
+      font-size: 14px; color: var(--muted);
+    }
+    .explain__sub--second::before { background: var(--orange); }
 
     /* ─── BENEFITS ─── */
     .benefits {
@@ -1018,7 +1075,6 @@
       .footer__grid     { grid-template-columns: 1fr 1fr; }
       .footer__brand    { grid-column: span 2; }
       .combo__inner     { grid-template-columns: 1fr; text-align: center; }
-      .combo__imgs      { margin: 0 auto; max-width: 380px; }
       .combo__sub       { max-width: 100%; margin-left: auto; margin-right: auto; }
       .combo__perks     { margin-left: auto; margin-right: auto; max-width: 360px; align-items: flex-start; }
 
@@ -1090,7 +1146,16 @@
       .hero__sub       { margin: 0 auto 28px; }
       .hero__btns      { justify-content: center; }
       .hero__chips     { justify-content: center; }
-      .hero__logo img  { max-width: 150px; }
+      .hero__logo {
+        display: block;
+        margin: 8px auto 28px;
+        text-align: center;
+      }
+      .hero__logo img {
+        max-width: 260px;
+        width: 70%;
+        filter: drop-shadow(0 10px 22px rgba(0,0,0,.38));
+      }
 
       /* IMPORTANT: text first, then image (no order override) */
       .hero__visual    {
@@ -1110,7 +1175,7 @@
       .games__grid      { grid-template-columns: 1fr; }
 
       /* Combo */
-      .combo__imgs      { width: 100%; max-width: 320px; }
+      .combo__perks     { max-width: 100%; }
 
       /* Benefits, info, how */
       .benefits__grid   { grid-template-columns: 1fr; }
@@ -1135,7 +1200,8 @@
       .combo,.benefits,
       .info,.how,.cta,
       .testimonials,
-      .delivery          { padding: 72px 0; }
+      .delivery,
+      .explain           { padding: 72px 0; }
 
       .hero__btns        { flex-direction: column; }
       .hero__btns .btn   { width: 100%; justify-content: center; }
@@ -1144,14 +1210,15 @@
       .info__grid        { grid-template-columns: 1fr; }
 
       /* Hero tighter */
+      .hero__logo img   { max-width: 220px; width: 72%; }
       .hero__visual      { max-width: 320px; }
       .hero__stamp       { width: 100px; height: 100px; padding: 8px; }
       .hero__stamp-pre   { font-size: 8px; letter-spacing: 1.5px; }
       .hero__stamp-main  { font-size: 12px; }
       .hero__stamp-city  { font-size: 10px; }
 
-      /* Combo grid: 2x2 instead of cramped */
-      .combo__imgs       { grid-template-columns: 1fr 1fr; max-width: 280px; }
+      /* Combo on small phones */
+      .combo__perks      { gap: 10px; }
     }
 
     /* ─── ≤360px — ULTRA NARROW (small Androids) ─── */
@@ -1266,7 +1333,7 @@
             <span class="hero__stamp-city">de Rosario</span>
           </div>
         </div>
-        <p class="hero__caption">…y los <em>inflables</em> para tu evento</p>
+        <p class="hero__caption">…y los <em>mejores inflables</em> para tu evento</p>
       </div>
 
     </div>
@@ -1349,7 +1416,7 @@
       <div class="games__header reveal">
         <span class="sec-label">Alquiler de Inflables</span>
         <h2 class="sec-title" id="games-h">Juegos e Inflables Gigantes</h2>
-        <p class="sec-sub">Cuatro opciones para que los chicos se olviden del celular y no quieran irse nunca. Buscanos también como: <em style="font-style:normal;color:var(--dark)">alquiler de inflables para cumpleaños, juegos gigantes para fiestas, castillo inflable para eventos infantiles.</em></p>
+        <p class="sec-sub">Cuatro opciones para que los chicos se olviden del celular y no quieran irse nunca. Perfectos para cumpleaños, eventos escolares y fiestas familiares.</p>
       </div>
 
       <div class="games__grid">
@@ -1421,7 +1488,7 @@
             <p class="game-card__desc">¿Quién emboca? El arco inflable desata la locura futbolera en cualquier evento. Todo el mundo quiere patear y nadie se quiere ir.</p>
             <a href="https://wa.me/5493482618539?text=Hola%20Estallados!%20%E2%9A%BD%20Quer%C3%ADa%20consultar%20por%20el%20arco%20de%20penales%20para%20un%20evento.%20%C2%BFEst%C3%A1%20disponible%3F"
                class="game-card__cta" target="_blank" rel="noopener noreferrer">
-              Consultar disponibilidad ⚽
+              ¡Lo quiero! ⚽
             </a>
           </div>
         </article>
@@ -1433,43 +1500,26 @@
   <!-- ── BLOCK C: COMBO ── -->
   <section class="combo" aria-labelledby="combo-h">
     <div class="container">
-      <div class="combo__inner">
-
-        <div class="combo__imgs" aria-hidden="true">
-          <div class="combo__img">
-            <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_400/v1782676515/carritoPochoclos_k4e5hi.png"
-                 alt="" loading="lazy">
-            <span class="combo__img-label">🍿 Pochoclos</span>
-          </div>
-          <div class="combo__img">
-            <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_400/v1782676429/castillo_uqebph.png"
-                 alt="" loading="lazy">
-            <span class="combo__img-label">🏰 Castillo</span>
-          </div>
-          <div class="combo__img">
-            <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_400/v1782676262/sapo_fqssjp.png"
-                 alt="" loading="lazy">
-            <span class="combo__img-label">🐸 Sapo</span>
-          </div>
-          <div class="combo__img">
-            <img src="https://res.cloudinary.com/dll6qurcd/image/upload/f_auto,q_auto,w_400/v1782675876/arco_lsh8ap.png"
-                 alt="" loading="lazy">
-            <span class="combo__img-label">⚽ Penales</span>
-          </div>
-        </div>
+      <div class="combo__inner combo__inner--solo">
 
         <div class="combo__content reveal">
           <span class="sec-label">Propuesta Completa</span>
           <h2 class="combo__title" id="combo-h">
-            ¿Querés resolver toda<br>la diversión de <em>una vez</em>?
+            Combiná pochoclos + inflables<br>+ <em>juegos gigantes</em>
           </h2>
           <p class="combo__sub">
-            Combiná pochoclos + inflables + juegos gigantes. Te armamos una propuesta personalizada según tu evento, espacio y cantidad de invitados. Sin vueltas.
+            Te armamos una propuesta personalizada según tu evento, espacio y cantidad de invitados. Sin vueltas, sin sorpresas.
           </p>
           <ul class="combo__perks">
-            <li><span>✓</span> Precio especial al combinar servicios</li>
-            <li><span>✓</span> Una sola coordinación, un solo WhatsApp</li>
-            <li><span>✓</span> Armado y desarmado incluidos</li>
+            <li class="combo__perk--highlight">
+              <span class="combo__perk-icon">💰</span>
+              <div>
+                <strong>Precio especial al combinar servicios</strong>
+                <em>Más barato que contratar cada cosa por separado</em>
+              </div>
+            </li>
+            <li><span class="combo__perk-icon">✓</span> Una sola coordinación, un solo WhatsApp</li>
+            <li><span class="combo__perk-icon">✓</span> Armado y desarmado incluidos</li>
           </ul>
           <a href="https://wa.me/5493482618539?text=Hola%20Estallados!%20%F0%9F%8E%89%F0%9F%8D%BF%20Quer%C3%ADa%20armar%20un%20combo%20para%20un%20evento%20con%20pochoclos%20y%20juegos.%20%C2%BFMe%20ayudan%3F"
              class="btn btn--white" target="_blank" rel="noopener noreferrer">
@@ -1535,13 +1585,19 @@
     </div>
   </section>
 
-  <!-- ── BENEFITS ── -->
-  <section class="benefits" aria-labelledby="benefits-h">
+  <!-- ── EXPLAIN: BENEFITS + FAQ unified ── -->
+  <section class="explain" id="info" aria-labelledby="explain-h">
     <div class="container">
-      <div class="reveal">
-        <span class="sec-label">¿Por Qué Estallados?</span>
-        <h2 class="sec-title" id="benefits-h">La Diversión Llega<br>con Todo Incluido</h2>
-        <p class="sec-sub" style="margin-bottom:48px;">No te preocupés por la logística. Nosotros nos ocupamos de que todo funcione.</p>
+      <div class="explain__header reveal">
+        <span class="sec-label">Información para reservar</span>
+        <h2 class="sec-title" id="explain-h">Todo lo que necesitás saber<br>antes de <em>reservar</em></h2>
+        <p class="sec-sub" style="margin-bottom:0;">Cómo trabajamos y las dudas más comunes resueltas, para que vengas tranquilo a tu evento.</p>
+      </div>
+
+      <!-- Sub-block A: Por qué Estallados -->
+      <div class="explain__sub reveal">
+        <h3 class="explain__sub-title">Por qué elegirnos</h3>
+        <p class="explain__sub-text">Nosotros nos ocupamos de la logística. Vos disfrutás.</p>
       </div>
       <div class="benefits__grid">
         <div class="b-item reveal d1">
@@ -1573,16 +1629,11 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── PRACTICAL INFO ── -->
-  <section class="info" aria-labelledby="info-h">
-    <div class="container">
-      <div class="info__header reveal">
-        <span class="sec-label">Preguntas Frecuentes</span>
-        <h2 class="sec-title" id="info-h">Todo lo que Necesitás Saber</h2>
-        <p class="sec-sub" style="margin-bottom:0;">Las respuestas antes de que preguntes.</p>
+      <!-- Sub-block B: FAQs -->
+      <div class="explain__sub explain__sub--second reveal">
+        <h3 class="explain__sub-title">Preguntas frecuentes</h3>
+        <p class="explain__sub-text">Las respuestas antes de que preguntes.</p>
       </div>
       <div class="info__grid">
 
@@ -1713,7 +1764,7 @@
         <div class="reveal">
           <p class="cta__pre">¿Tu evento se acerca?</p>
           <h2 class="cta__h2" id="cta-h">
-            Hacé que sea<br>un Evento <em>Épico</em>
+            Hacé que sea<br><em>TU evento</em>
           </h2>
           <p class="cta__p">
             Contanos fecha, lugar y cantidad de invitados. En minutos te damos disponibilidad y armamos la propuesta perfecta para tu festejo.
