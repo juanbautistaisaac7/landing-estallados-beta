@@ -213,12 +213,13 @@
     /* ─── HERO VISUAL: simplified premium photo + stamp ─── */
     .hero__logo {
       display: inline-block;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       animation: fadeUp .6s ease-out both;
     }
     .hero__logo img {
-      max-width: 230px; width: 100%; height: auto;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.32));
+      max-width: 280px; width: 100%; height: auto;
+      display: block;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.34));
     }
 
     .hero__visual {
@@ -547,6 +548,157 @@
       max-width: 520px; margin-left: auto; margin-right: auto; text-align: left;
     }
     .combo .sec-label { color: var(--yellow); }
+
+    /* ─── INTERACTIVE PICKER ─── */
+    .combo__picker {
+      width: 100%;
+      max-width: 560px;
+      margin: 8px auto 32px;
+      padding: 26px 22px 22px;
+      background: rgba(255,255,255,.05);
+      border: 1.5px solid rgba(255,255,255,.14);
+      border-radius: var(--r-lg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: pickerIn .6s .2s ease-out both;
+    }
+    @keyframes pickerIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .combo__picker-label {
+      font-family: 'Righteous', cursive;
+      font-size: 13px;
+      color: var(--yellow);
+      text-align: center;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .combo__picker-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .combo__chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px 10px 14px;
+      border-radius: 100px;
+      background: rgba(255,255,255,.08);
+      border: 2px solid rgba(255,255,255,.16);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .25s var(--ease-spring),
+                  background .22s, border-color .22s,
+                  box-shadow .22s, color .2s;
+      user-select: none; -webkit-user-select: none;
+      white-space: nowrap;
+    }
+    .combo__chip:hover {
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.3);
+      transform: translateY(-2px);
+    }
+    .combo__chip:focus-visible {
+      outline: 2px solid var(--yellow);
+      outline-offset: 2px;
+    }
+    .combo__chip-emoji { font-size: 17px; line-height: 1; }
+    .combo__chip-check {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      border: 1.5px solid rgba(255,255,255,.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .22s, border-color .22s;
+    }
+    .combo__chip-check svg {
+      width: 11px; height: 11px;
+      color: var(--yellow);
+      opacity: 0;
+      transform: scale(.5);
+      transition: opacity .18s, transform .25s var(--ease-spring);
+    }
+    .combo__chip.is-selected {
+      background: var(--yellow);
+      color: var(--dark);
+      border-color: var(--yellow);
+      box-shadow: 0 8px 22px rgba(255,214,0,.35),
+                  inset 0 1px 2px rgba(255,255,255,.5);
+    }
+    .combo__chip.is-selected .combo__chip-check {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+    .combo__chip.is-selected .combo__chip-check svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .combo__chip.is-selected:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(255,214,0,.45);
+    }
+
+    .combo__picker-summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 13.5px;
+      color: rgba(255,255,255,.7);
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,.14);
+    }
+    .combo__count {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      min-width: 32px; height: 32px;
+      padding: 0 10px;
+      border-radius: 100px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Righteous', cursive;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(227,6,19,.35);
+    }
+    .combo__count.pulse { animation: countPulse .45s ease-out; }
+    @keyframes countPulse {
+      0%   { transform: scale(1); background: var(--red); }
+      45%  { transform: scale(1.25); background: var(--yellow); color: var(--dark); }
+      100% { transform: scale(1); background: var(--red); color: #fff; }
+    }
+    .combo__count.is-zero {
+      background: rgba(255,255,255,.18);
+      box-shadow: none;
+    }
+    .combo__savings {
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+    }
+    .combo__savings strong {
+      color: var(--yellow);
+      font-weight: 700;
+    }
+    .combo__savings.is-hidden { display: none; }
+
+    #comboBtn.is-disabled {
+      opacity: .55;
+      pointer-events: none;
+      filter: grayscale(.4);
+    }
+
+    /* ─── COMBO TITLE & SUB ─── */
     .combo__title {
       font-family: 'Righteous',cursive; font-size: clamp(30px, 4vw, 52px);
       color: #fff; margin-bottom: 18px; line-height: 1.12;
@@ -1148,13 +1300,16 @@
       .hero__chips     { justify-content: center; }
       .hero__logo {
         display: block;
-        margin: 8px auto 28px;
+        width: 100%;
+        margin: 14px 0 32px;
         text-align: center;
       }
       .hero__logo img {
-        max-width: 260px;
-        width: 70%;
-        filter: drop-shadow(0 10px 22px rgba(0,0,0,.38));
+        max-width: 320px;
+        width: 78%;
+        margin: 0 auto;
+        display: block;
+        filter: drop-shadow(0 12px 26px rgba(0,0,0,.42));
       }
 
       /* IMPORTANT: text first, then image (no order override) */
@@ -1173,6 +1328,17 @@
       .pochoclos__inner { grid-template-columns: 1fr; }
       .pochoclos__img-wrap { min-height: 260px; }
       .games__grid      { grid-template-columns: 1fr; }
+
+      /* Game cards: on mobile fill the whole card (like before) */
+      .game-card__img       { padding: 0; height: 260px; display: block; }
+      .game-card__img::after { display: none; }
+      .game-card__img img {
+        width: 100%; height: 100%;
+        max-width: none; max-height: none;
+        object-fit: cover;
+        filter: none;
+      }
+      .game-card:hover .game-card__img img { transform: scale(1.07); }
 
       /* Combo */
       .combo__perks     { max-width: 100%; }
@@ -1210,7 +1376,7 @@
       .info__grid        { grid-template-columns: 1fr; }
 
       /* Hero tighter */
-      .hero__logo img   { max-width: 220px; width: 72%; }
+      .hero__logo img   { max-width: 280px; width: 82%; }
       .hero__visual      { max-width: 320px; }
       .hero__stamp       { width: 100px; height: 100px; padding: 8px; }
       .hero__stamp-pre   { font-size: 8px; letter-spacing: 1.5px; }
@@ -1266,6 +1432,7 @@
         <li><a href="#servicios">Inflables</a></li>
         <li><a href="#delivery">A domicilio</a></li>
         <li><a href="#como-funciona">Cómo Funciona</a></li>
+        <li><a href="#info">Info</a></li>
         <li><a href="#contacto" class="nav__cta">¡Consultá Ahora!</a></li>
       </ul>
 
@@ -1510,6 +1677,54 @@
           <p class="combo__sub">
             Te armamos una propuesta personalizada según tu evento, espacio y cantidad de invitados. Sin vueltas, sin sorpresas.
           </p>
+
+          <!-- Interactive picker -->
+          <div class="combo__picker" id="comboPicker">
+            <p class="combo__picker-label">¿Qué te interesa para tu evento?</p>
+            <div class="combo__picker-chips" role="group" aria-label="Servicios para combinar">
+              <button type="button" class="combo__chip is-selected" data-id="pochoclos" data-label="Pochoclos">
+                <span class="combo__chip-emoji" aria-hidden="true">🍿</span>
+                <span>Pochoclos</span>
+                <span class="combo__chip-check" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3 3 7-7"/></svg>
+                </span>
+              </button>
+              <button type="button" class="combo__chip is-selected" data-id="castillo" data-label="Castillo inflable">
+                <span class="combo__chip-emoji" aria-hidden="true">🏰</span>
+                <span>Castillo</span>
+                <span class="combo__chip-check" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3 3 7-7"/></svg>
+                </span>
+              </button>
+              <button type="button" class="combo__chip is-selected" data-id="sapo" data-label="Sapo gigante">
+                <span class="combo__chip-emoji" aria-hidden="true">🐸</span>
+                <span>Sapo gigante</span>
+                <span class="combo__chip-check" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3 3 7-7"/></svg>
+                </span>
+              </button>
+              <button type="button" class="combo__chip" data-id="penales" data-label="Arco de penales">
+                <span class="combo__chip-emoji" aria-hidden="true">⚽</span>
+                <span>Penales</span>
+                <span class="combo__chip-check" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3 3 7-7"/></svg>
+                </span>
+              </button>
+              <button type="button" class="combo__chip" data-id="dardo" data-label="Dardo gigante">
+                <span class="combo__chip-emoji" aria-hidden="true">🎯</span>
+                <span>Dardo</span>
+                <span class="combo__chip-check" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3 3 7-7"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="combo__picker-summary">
+              <span class="combo__count" id="comboCount">3</span>
+              <span class="combo__count-label">servicios elegidos</span>
+              <span class="combo__savings"><strong>+ahorro</strong> al combinar</span>
+            </div>
+          </div>
+
           <ul class="combo__perks">
             <li class="combo__perk--highlight">
               <span class="combo__perk-icon">💰</span>
@@ -1522,8 +1737,8 @@
             <li><span class="combo__perk-icon">✓</span> Armado y desarmado incluidos</li>
           </ul>
           <a href="https://wa.me/5493482618539?text=Hola%20Estallados!%20%F0%9F%8E%89%F0%9F%8D%BF%20Quer%C3%ADa%20armar%20un%20combo%20para%20un%20evento%20con%20pochoclos%20y%20juegos.%20%C2%BFMe%20ayudan%3F"
-             class="btn btn--white" target="_blank" rel="noopener noreferrer">
-            Armar mi combo por WhatsApp 🎉
+             class="btn btn--white" id="comboBtn" target="_blank" rel="noopener noreferrer">
+            <span id="comboBtnText">Pedir combo de 3 servicios</span> 🎉
           </a>
         </div>
 
@@ -1764,7 +1979,7 @@
         <div class="reveal">
           <p class="cta__pre">¿Tu evento se acerca?</p>
           <h2 class="cta__h2" id="cta-h">
-            Hacé que sea<br><em>TU evento</em>
+            Hacé que <em>TU evento</em><br>sea <em>ÉPICO</em>
           </h2>
           <p class="cta__p">
             Contanos fecha, lugar y cantidad de invitados. En minutos te damos disponibilidad y armamos la propuesta perfecta para tu festejo.
@@ -1924,6 +2139,61 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+
+  /* ── COMBO PICKER ── */
+  (function initComboPicker() {
+    const picker = document.getElementById('comboPicker');
+    if (!picker) return;
+    const chips    = picker.querySelectorAll('.combo__chip');
+    const count    = document.getElementById('comboCount');
+    const savings  = picker.querySelector('.combo__savings');
+    const btn      = document.getElementById('comboBtn');
+    const btnText  = document.getElementById('comboBtnText');
+    const WA_BASE  = 'https://wa.me/5493482618539?text=';
+    const fallback = 'Hola Estallados! 🎉 Quería armar un combo para un evento. ¿Me ayudan?';
+
+    function update(animate) {
+      const selected = [...chips].filter(c => c.classList.contains('is-selected'));
+      const labels   = selected.map(c => c.dataset.label);
+      const n        = selected.length;
+
+      // counter
+      count.textContent = n;
+      count.classList.toggle('is-zero', n === 0);
+      if (animate) {
+        count.classList.remove('pulse');
+        void count.offsetWidth;
+        count.classList.add('pulse');
+      }
+
+      // savings hint shows only when combining 2+
+      savings.classList.toggle('is-hidden', n < 2);
+
+      // button text + WA link
+      if (n === 0) {
+        btn.classList.add('is-disabled');
+        btnText.textContent = 'Elegí al menos un servicio';
+        btn.href = WA_BASE + encodeURIComponent(fallback);
+      } else {
+        btn.classList.remove('is-disabled');
+        const list = labels.join(', ');
+        const msg  = 'Hola Estallados! 🎉🍿 Quería armar un combo con: ' + list + '. ¿Me ayudan?';
+        btn.href   = WA_BASE + encodeURIComponent(msg);
+        btnText.textContent = n === 1
+          ? 'Pedir cotización por WhatsApp'
+          : 'Pedir combo de ' + n + ' servicios';
+      }
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('is-selected');
+        update(true);
+      });
+    });
+
+    update(false);
   })();
 
   /* ── TESTIMONIALS CAROUSEL ── */
